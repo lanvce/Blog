@@ -1,0 +1,14 @@
+spring:
+  thymeleaf:
+    mode: HTML
+
+  profiles:
+    active: dev
+  messages:
+    basename: imformation/messages
+
+#  resources:
+#    static-locations: classpath:/static,classpath:/templates
+
+comment.avatar: /images/avatar.jpeg
+

@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://myblog_mysql:3306/blog?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: mzs199847
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+logging:
+  level:
+    root: warn
+    vip.lanvce: info
+  file:
+    path: /log
+    name: blog-pro.log
+
+
+
+
+
+
+

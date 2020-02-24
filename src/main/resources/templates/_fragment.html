@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <meta name="viewpoint" content="width=device-width,initial-scale=1.0">
+    <title th:replace="${title}">博客详情页</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/me.css" th:href="@{/css/me.css}">
+    <link rel="stylesheet" href="../static/css/typo.css" th:href="@{/css/typo.css}">
+    <link rel="stylesheet" href="../static/css/animate.css" th:href="@{/css/animate.css}">
+    <link rel="stylesheet" href="../static/lib/prism/prism.css" th:href="@{/lib/prism/prism.css}">
+    <link rel="stylesheet" href="../static/lib/tocbot/tocbot.css" th:href="@{/lib/tocbot/tocbot.css}">
+</head>
+
+<nav th:fragment="menu(n)" class="ui inverted attached segment m-shadow-small m-padded-tb-mini">
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu ">
+            <h2 class="ui teal header item">Lanvce</h2>
+            <a href="#" th:href="@{/}" class="item m-item m-mobile-hide" th:classappend="${n==1} ? 'active'"><i class="home icon"></i> 首页</a>
+            <a href="#" th:href="@{/types/-1}" class="item m-item m-mobile-hide" th:classappend="${n==2} ? 'active'"><i class="idea icon"></i> 分类</a>
+            <a href="#" th:href="@{/archives}" class="item m-item m-mobile-hide" th:classappend="${n==3} ? 'active'"><i class="clone icon"></i> 归档</a>
+            <a href="#" th:href="@{/tags/-1}" class="item m-item  m-mobile-hide" th:classappend="${n==4} ? 'active'"><i class="tags icon"></i> 标签</a>
+            <a href="#" th:href="@{/about}" class="item m-item m-mobile-hide" th:classappend="${n==5} ? 'active'"><i class="info icon"></i> 关于我</a>
+
+            <div class="right m-item item m-mobile-hide">
+                <form name="search" action="#" th:action="@{/search}" method="post" target="_blank">
+                    <div class="ui icon inverted transparent input m-margin-tb-tiny">
+                        <input type="text" name="query" placeholder="Search...." th:value="${query}">
+                        <i onclick="document.forms['search'].submit()" class="search link icon"></i>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+    <a href="#" class="ui menu toggle black icon button m-top-right m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+
+
+
+<!--底部-->
+<footer th:fragment="footer">
+    <div class="ui inverted vertical center segment m-padded-tb-massive">
+        <div class="ui center aligned  container">
+            <div class="ui stackable grid inverted divided">
+                <div class="five wide column ">
+
+                    <h4 class="ui inverted header m-line-space m-opacity-mini m-text-spaced">最新博客</h4>
+                    <div id="newblog-container">
+                        <div class="ui inverted link list" th:fragment="newblogList">
+                            <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="item m-text-thin" th:each="blog : ${newblogs}" th:text="${blog.title}">用户故事（User Story）</a>
+                            <!--/*-->
+                            <a href="#" class="item m-text-thin">用户故事（User Story）</a>
+                            <a href="#" class="item m-text-thin">用户故事（User Story）</a>
+                            <!--*/-->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="five wide column">
+                    <h4 class="ui inverted header m-line-space m-opacity-mini m-text-spaced ">联系方式</h4>
+                    <div class="ui inverted link list m-line-space m-opacity-mini m-text-spaced m-text-thin">
+                        <a href="#" class="item">Email:1569101820@qq.com</a>
+                        <a href="#" class="item">Vx:lanvce47</a>
+
+                    </div>
+                </div>
+
+                <div class="six wide column">
+                    <h4 class="ui inverted header m-line-space m-opacity-mini m-text-spaced">Blog</h4>
+                    <p class="m-line-space m-opacity-mini m-text-spaced m-text-thin" >
+                        Lanvce的个人博客，分享关于编程，学习，生活，兴趣爱好的任何内容，感谢你曾经来过...</p>
+                </div>
+
+            </div>
+            <div class="ui inverted section divider center "></div>
+            <p class="m-line-space m-opacity-mini m-text-spaced m-text-thin">Copyright @2019-2020 Designed By Lanvce</p>
+        </div>
+    </div>
+
+</footer>
+
+<!--<th:block th:fragment="script">-->
+<!--<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>-->
+<!--<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>-->
+<!--<script src="../static/lib/prism/prism.js" th:href="@{/lib/prism/prism.js}"></script>-->
+<!--<script src="../static/lib/tocbot/tocbot.min.js" th:href="@{/lib/tocbot/tocbot.min.js}"></script>-->
+<!--<script src="../static/lib/qrcode/qrcode.js" th:href="@{/lib/qrcode/qrcode.js}"></script>-->
+<!--<script src="//cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js" ></script>-->
+<!--<script src="../static/lib/waypoints/jquery.waypoints.js" th:href="@{/lib/waypoints/jquery.waypoints.js}"></script>-->
+
+<!--</th:block>>-->
+
+
+<th:block th:fragment="script">
+    <script src="https://cdn.bootcss.com/showdown/1.3.0/showdown.min.js"></script>
+<!--    <script src="..static/lib/showdown/showdown.js" th:src="@{/lib/showdown/showdown.js}" ></script>-->
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>
+    <script src="..static/lib/prism/prism.js" th:src="@{/lib/prism/prism.js}"></script>
+    <script src="..static/lib/tocbot/tocbot.min.js" th:src="@{/lib/tocbot/tocbot.min.js}"></script>
+    <script src="..static/lib/qrcode/qrcode.min.js" th:src="@{/lib/qrcode/qrcode.min.js}"></script>
+    <script src="..static/lib/waypoints/jquery.waypoints.min.js" th:src="@{/lib/waypoints/jquery.waypoints.min.js}"></script>
+</th:block>
+    <script>
+        $('#newblog-container').load(/*[[@{/footer/newblog}]]*/"/footer/newblog");
+    </script>
+
+
+</html>
